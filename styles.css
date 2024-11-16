@@ -1,0 +1,284 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: lato, sans-serif;
+    line-height: 1.5;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-image: url('SchoolDesk.jpg'); /* Wooden table texture */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Page and Paper Stack */
+.container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.paper-stack {
+    position: relative;
+    width: 160mm; /* Scaled down A4 paper width */
+    height: 226mm; /* Scaled down A4 paper height */
+    margin: 20px 0;
+}
+
+.container.page {
+    position: absolute;
+    width: 210mm; /* A4 width */
+    height: 297mm; /* A4 height */
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, filter 0.5s ease;
+    border: 1px solid #ddd;
+    padding: 60px;
+}
+
+/* Stacked Page Effects */
+#page1 {
+    z-index: 3;
+    transform: rotate(0deg);
+    filter: none;
+}
+
+#page2 {
+    z-index: 2;
+    transform: translateX(15px) rotate(-2deg);
+    filter: grayscale(80%);
+}
+
+#page3 {
+    z-index: 1;
+    transform: translateX(30px) rotate(3deg);
+    filter: grayscale(100%);
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10mm;
+}
+
+.profile-photo {
+    width: 40mm;
+    height: 40mm;
+    border-radius: 50%;
+    margin-right: 5mm;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text h1 {
+    font-size: 2em;
+    margin-bottom: 5mm;
+}
+
+/* Reduce size of the h3 element and its contents */
+h3 {
+    font-size: 1.2em;  /* Smaller than the default size, you can adjust as needed */
+    margin-bottom: 0mm; /* Optional: Adjust margin for h3 if needed */
+
+}
+
+h3 .level {
+    font-size: 0.9em; /* Smaller text for the individual level spans */
+    font-weight: normal; /* Optional: Adjust weight of the levels */
+}
+
+.tagline {
+    font-size: 1.2em;
+    color: #555;
+    display: inline-block;
+}
+
+.tag-part {
+    display: inline-block;
+    transform: translateY(0);
+    transition: transform 0.0s ease-out, opacity 0.0s ease-out;
+}
+
+.tagline:hover .tag-part:nth-child(1) { animation: fade-in-up 0.6s ease-out 0.6s forwards; }
+.tagline:hover .tag-part:nth-child(2) { animation: fade-in-up 0.6s ease-out 1.2s forwards; }
+.tagline:hover .tag-part:nth-child(3) { animation: fade-in-up 0.6s ease-out 1.8s forwards; }
+
+/* Section Styling */
+.section {
+    margin-bottom: 5mm;
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: lato, sans-serif;
+}
+
+.section h2 {
+    font-size: 1.4em;
+    margin-bottom: 2mm;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 7mm;
+    display: grid;
+    grid-template-columns: 160px 1fr; /* Two columns: date and title */
+    align-items: center;
+}
+
+.date {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.course {
+    /* Flexible spacing for course/job title */
+}
+
+/* Education and Certifications */
+.education .date, .certifications .provider {
+    font-weight: bold;
+    display: inline-block;
+    width: 30%;
+}
+
+.education .description, .certifications .course {
+    display: inline-block;
+    width: 65%;
+    margin-left: 5%;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: white;
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    padding: 0px 0;
+    font-size: 1rem; 
+}
+
+.contact-info i {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.contact-info a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-info a:hover {
+    color: #0077b5; /* Highlight on hover */
+}
+
+/* Contact Item Hover Effects */
+.footer .contact-item:hover i, .footer .contact-item:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+/* Highlight Styles */
+.level-A:hover, .level-B:hover, .level-C:hover, .level-D:hover {
+    background-color: #f0f0f0;
+}
+
+.highlight-A { background-color: #add8e6; } /* Light blue */
+.highlight-B { background-color: #ffeb99; } /* Light yellow */
+.highlight-C { background-color: #d3d3d3; } /* Light grey */
+.highlight-D { background-color: #ffcccb; } /* Light red */
+
+/* Animations */
+@keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Table Styles */
+.tables-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+table {
+    width: 48%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th {
+    background-color: white;
+    color: black;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+table td {
+    padding: 1px 15px;
+    text-align: left;
+    border: none;
+}
+
+table tr:hover {
+    background-color: #ddd;
+
+/* Apply perspective to the container for 3D effect */
+.profile-photo-container {
+    perspective: 1000px; /* Controls the intensity of the 3D effect */
+}
+
+/* Rotate the profile photo like a door */
+.profile-photo {
+    width: 40mm;
+    height: 40mm;
+    border-radius: 50%;
+    margin-right: 5mm;
+    transition: transform 1s ease-in-out; /* Add smooth transition */
+}
+
+/* Rotate the image when hovered, like a rotating door */
+.profile-photo:hover {
+    transform: rotateY(180deg); /* Rotates around the Y-axis */
+}
