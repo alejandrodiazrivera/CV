@@ -148,3 +148,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply the shake effect to each contact element (phone, email, LinkedIn)
     contactElements.forEach(addShakeEffect);
 });
+
