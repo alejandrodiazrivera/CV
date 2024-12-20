@@ -1,4 +1,3 @@
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,20 +5,25 @@
 }
 
 body {
-    font-family: lato, sans-serif;
+    font-family: 'Lato', sans-serif;
     line-height: 1.5;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
+    background-color: #E0E0E0;
     background-image: url('SchoolDesk.jpg'); /* Wooden table texture */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+
+    /* Flexbox for centering */
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    height: 100vh;
+    margin: 0;
 }
 
-/* Page and Paper Stack */
+
+
+/* Container Styling */
 .container {
     position: relative;
     min-height: 100vh;
@@ -29,39 +33,37 @@ body {
 
 .paper-stack {
     position: relative;
-    width: 160mm; /* Scaled down A4 paper width */
-    height: 226mm; /* Scaled down A4 paper height */
+    width: 160mm; /* Scaled-down A4 paper width */
+    height: 226mm; /* Scaled-down A4 paper height */
     margin: 20px 0;
 }
 
 .container.page {
     position: absolute;
-    width: 210mm; /* A4 width */
-    height: 297mm; /* A4 height */
+    width: 315mm; /* Scaled-up A4 width */
+    height: 445.5mm; /* Scaled-up A4 height */
     background-color: white;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #E1E1E1;
+    padding: 90px;
     transition: transform 0.5s ease, filter 0.5s ease;
-    border: 1px solid #ddd;
-    padding: 60px;
 }
 
 /* Stacked Page Effects */
 #page1 {
     z-index: 3;
     transform: rotate(0deg);
-    filter: none;
 }
 
 #page2 {
     z-index: 2;
     transform: translateX(15px) rotate(-2deg);
-    filter: grayscale(80%);
 }
 
 #page3 {
     z-index: 1;
     transform: translateX(30px) rotate(3deg);
-    filter: grayscale(100%);
+    
 }
 
 /* Header Section */
@@ -71,11 +73,19 @@ body {
     margin-bottom: 10mm;
 }
 
+.profile-photo-container {
+    perspective: 1000px;
+}
+
 .profile-photo {
     width: 40mm;
     height: 40mm;
     border-radius: 50%;
     margin-right: 5mm;
+}
+
+.tagline {
+    font-size: 25px;
 }
 
 .text {
@@ -84,127 +94,60 @@ body {
     justify-content: center;
 }
 
+.content i, .content tag {
+    color: black;   
+}
+
+.tag{
+  font-style:italic;
+}  
 .text h1 {
-    font-size: 2em;
-    margin-bottom: 5mm;
+    font-size: 55px;
+    margin-bottom: 1mm;
+    color: #333;
 }
 
-/* Reduce size of the h3 element and its contents */
+/* Table Rank Code */
 h3 {
-    font-size: 1.2em;  /* Smaller than the default size, you can adjust as needed */
-    margin-bottom: 0mm; /* Optional: Adjust margin for h3 if needed */
-
-}
-
-h3 .level {
-    font-size: 0.9em; /* Smaller text for the individual level spans */
-    font-weight: normal; /* Optional: Adjust weight of the levels */
-}
-
-/* Apply animation only when on the front page */
-.front-page .tag-part {
-    display: inline-block;
-    opacity: 1; /* Keep opacity at 1 */
-    transform: translateY(0); /* Initially at the normal position */
-    animation: drop-and-shake 4s ease-in-out infinite; /* Apply the animation only on the front page */
-}
-
-@keyframes drop-and-shake {
-    0% {
-        transform: translateY(0px) rotate(0deg); /* Start slightly above, no rotation */
-    }
-    20% {
-        transform: translateY(0) rotate(0deg); /* Fall to the table with a slight rotation */
-    }
-    40% {
-        transform: translateY(-2px) rotate(0deg); /* Move up and rotate a little */
-    }
-    60% {
-        transform: translateY(1px) rotate(0deg); /* Slight bounce up with a small rotation */
-    }
-    80% {
-        transform: translateY(0) rotate(0deg); /* Settle at the table with a small negative rotation */
-    }
-    100% {
-        transform: translateY(0) rotate(0deg); /* Fully settled position */
-    }
-}
-
-/* Apply staggered animation delays */
-.front-page .tagline .tag-part:nth-child(1) {
-    animation-delay: 0s; /* No delay for the first part */
-}
-
-.front-page .tagline .tag-part:nth-child(2) {
-    animation-delay: 0.5s; /* Slight delay for the second part */
-}
-
-.front-page .tagline .tag-part:nth-child(3) {
-    animation-delay: 1s; /* Slight delay for the third part */
+    font-size: 1.2em;
+    margin-bottom: 5mm;
+    text-align: center;
+    font-style: italic;
+    font-weight: normal;
 }
 
 /* Section Styling */
 .section {
-    margin-bottom: 5mm;
+    margin-bottom: 15px; /* Uniform spacing */
     text-align: justify;
     text-justify: inter-word;
-    font-family: lato, sans-serif;
+    font-size: 20px;
+    padding: 15px 20px;
+    
 }
+
 
 .section h2 {
-    font-size: 1.4em;
-    margin-bottom: 2mm;
+    font-size: 2em;
+    margin-bottom:3mm;
     color: #333;
-}
-
-.skill i{
-  font-size:15px;
-  
-}
-
-li {
-    margin-bottom: 8mm;
-    display: grid;
-    grid-template-columns: 165px 1fr; /* Two columns: date and title */
-    align-items: center;
-}
-
-.section .skill {
-    display: block; /* Place the skill icon on its own line */
-    padding-left: 170px; /* Indent the skill icon */
-    color:grey;
-}
-
-.section .description{
-    font-size:12px;
-    padding-left:20px;
-    color:grey;
+    font-weight: bold;
+    border-bottom: solid;
+    border-bottom-color: #333;
+    border-bottom-width: thin;
 }
 
 .date {
-    
-    padding-right: 10px;
+    display:inline;
+    color: #333;
 }
 
-/* Education and Certifications */
-.education .date, .certifications .provider {
-    font-weight: bold;
-    display: inline-block;
-    width: 30%;
-}
-
-.education .description, .certifications .course {
-    display: inline-block;
-    width: 65%;
-    margin-left: 5%;
-}
-
-/* Footer */
+/* Footer Styling */
 .footer {
     margin-top: auto;
-    background-color: white;
     text-align: right;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    background-color: white;
 }
 
 .contact-info {
@@ -212,14 +155,7 @@ li {
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    font-size: 14px;
-    padding: 0px 0;
-    font-size: 1rem; 
-}
-
-.contact-info i {
-    margin-right: 10px;
-    cursor: pointer;
+    font-size: 20px;
 }
 
 .contact-info a {
@@ -228,38 +164,28 @@ li {
 }
 
 .contact-info a:hover {
-    color: #0077b5; /* Highlight on hover */
+    color: #08478a; /* Highlight on hover */
 }
 
-/* Contact Item Hover Effects */
-.footer .contact-item:hover i, .footer .contact-item:hover {
+.page-number{
+  font-size:20px;
+  
+}
+
+.footer .contact-item:hover i,
+.footer .contact-item:hover {
     transform: scale(1.1);
-    background-color: #f0f0f0;
+    background-color: #007bff;
     border-radius: 5px;
     padding: 5px 10px;
 }
 
-/* Highlight Styles */
-.level-A:hover, .level-B:hover, .level-C:hover, .level-D:hover {
-    background-color: #f0f0f0;
-}
-
-.highlight-A { background-color: #add8e6; } /* Light blue */
-.highlight-B { background-color: #ffeb99; } /* Light yellow */
-.highlight-C { background-color: #d3d3d3; } /* Light grey */
-.highlight-D { background-color: #ffcccb; } /* Light red */
-
-/* Animations */
-@keyframes fade-in-up {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
+/*Contact-info shake*/
 @keyframes shake {
     0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
+    25% { transform: translateX(5px); }
+    50% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
     100% { transform: translateX(0); }
 }
 
@@ -267,208 +193,189 @@ li {
     animation: shake 0.5s ease-in-out;
 }
 
-/* Table Styles */
+/* Table Styling */
 .tables-container {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 20px;
 }
 
 table {
-    width: 48%;
+    width: 50%;
     border-collapse: collapse;
     margin-top: 10px;
 }
 
-table th {
-    background-color: white;
-    color: black;
-    padding: 12px 15px;
-    text-align: left;
-    font-weight: bold;
-}
-
+table th,
 table td {
-    padding: 1px 15px;
+    padding: 10px 10px;
     text-align: left;
-    border: none;
 }
 
 table tr:hover {
-    background-color: #ddd;
+    background: #333;
+    color: #f8f9fa;
+    text-shadow: 0 0 2px black;
+    
 }
 
-/* Apply perspective to the container for 3D effect */
-.profile-photo-container {
-    perspective: 1000px; /* Controls the intensity of the 3D effect */
-}
-
-/* Rotate the profile photo like a door */
-.profile-photo {
-    width: 40mm;
-    height: 40mm;
-    border-radius: 50%;
-    margin-right: 5mm;
-    transition: transform 1s ease-in-out; /* Add smooth transition */
-}
-
-/* Styling the description and tags */
-.description {
-    display: inline; /* Tags stay inline */
-}
-
-tag {
-    display: inline-block; /* Allows animation effects like scale */
-    padding: 5px 0px;
-    background-color: white; /* Tag background */
-    font-style: italic;
-    border-radius: 4px;
-    margin-right: 5px; /* Space between tags */
-    cursor: pointer;
-    transform: scale(1); /* Initial scale */
-    opacity: 1; /* Fully visible */
-    transition: all 0.3s ease; /* Smooth default state change */
-}
-
-/* Keyframe for pop-out animation */
-@keyframes popOut {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Staggered hover animations */
-.description tag:nth-child(1):hover {
-    animation: popOut 0.8s ease-in-out;
-}
-
-.description tag:nth-child(2):hover {
-    animation: popOut 0.8s ease-in-out 0.1s;
-}
-
-.description tag:nth-child(3):hover {
-    animation: popOut 0.8s ease-in-out 0.2s;
+/* Optional: Add visual effect for hover */
+table tr:hover td {
+    text-shadow: 0 0 2px black; /* Subtle outline for text visibility */
 }
 
 
-.section-results ul li.grey-background {
-    background-color: #f0f0f0; /* Light grey */
+/* Scrollable Sections */
+.section-results {
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.section-results h2 {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+    padding: 10px 0px;
+}
+
+.section-results ul {
+    list-style-type: none;
+}
+
+.section-results li {
     padding: 10px;
+}
+
+ 
+/* Collapsible Section Styling ---------------------------------------------------------------*/
+.collapsible {
+    display:inline;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    width: auto;
+    font-weight:bold;
+    text-align:left;
+    padding: 0px;
+    margin-bottom:20px;
+}
+
+
+.section-results li.grey-background {
+    background-color: #007bff;
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
 
-.section-results {
-    max-height: 600px; /* Set the height you want for the scrollable section */
-    overflow-y: auto;  /* Make it scrollable vertically if content overflows */
-    padding-right: 10px; /* Add a bit of padding for the scrollbar */
-    border: none;
-    margin-bottom: 20px; /* Optional: Add some margin below the section */
-    position: relative; /* Ensure the container can hold sticky child elements */
+
+/* Content Styling */
+.content {
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    padding: 0 15px; /* Padding for spacing */
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-left:20px;
+    
 }
 
-.section-results h2 {
-    position: sticky;  /* Fixes the heading in place */
-    top: 0;            /* Stick the heading to the top of the scrollable section */
-    background-color: white; /* Optional: Add background color to prevent overlap with content */
-    z-index: 1;        /* Optional: Ensure it appears above other content */
-    padding: 10px 0;   /* Optional: Add padding to the heading */
-    margin: 0;         /* Optional: Remove any default margins */
-    borders:none;
+/* Reveal content on hover */
+.collapsible:hover + .content {
+    max-height: 500px; /* Adjust to fit your content */
+    padding: 10px; /* Add padding when expanded */
 }
 
-.section-results ul {
-    list-style-type: none; /* Optional: Removes bullets from the list */
+.collapsible:hover{
+    background-color:#333;
+    color:white;
+    font-weight:bold;
+    padding:10px;
+}
+
+.compact-list {
+    list-style-type: none;
     padding: 0;
 }
 
-.section-results li {
-    padding: 10px;
-    borders:none;
-
+.compact-list li {
+    margin-bottom: 10px;
+    position: relative;
 }
 
-.section-results li.grey-background {
-    background-color: #f4f4f4; /* Optional: Style for grey background items */
+.provider {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
-/* Scrollable container */
-.scrollable-container {
-    max-height: 300px;       /* Limit height */
-    overflow-y: hidden;      /* Initially hide the scrollbar */
-    padding-right: 10px;      /* Space for scrollbar */
-    transition: overflow 0.3s ease-in-out; /* Smooth transition */
+.courses {
+    font-size: 20px;
 }
 
-/* Show scrollbar when hovering over the container */
-.scrollable-container:hover {
-    overflow-y: auto;        /* Show scrollbar on hover */
+.course {
+    margin-right: 0px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
-/* Customize the scrollbar appearance */
+/* Pop out effect when hovering over individual courses */
+.course:hover {
+    transform: scale(1.05); /* Slightly enlarge the course */
+    color: white;
+    font-weight:bold;
+    background:#333;/* Optional: Change color */
+     padding:10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+  /* Remove bullets only for the top-level <li> */
+ul > li {
+    list-style-type: none;
+}
+
+/* Retain bullets for nested lists within .content */
+.content li, .content tag{
+    margin-left:220px;
+    list-style-type: disc;
+    list-style-position: outside;
+}
+
+/* List Bullets Fix */
+.content ul {
+    list-style-position: inside;
+    padding-left: 20px;
+}
+
+.content ul ul > li {
+    margin-left: 140px; /* Nested items indented properly */
+}
+
+.content > ul > li {
+    margin-left: 20px; /* Align top-level list items */
+}
+
+/* Adjust the overall section for spacing */
+.section li {
+    margin-bottom: 5px; /* Space between list items */
+
+  
+/* Reusable Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 10px;             /* Width of the scrollbar */
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: white;     /* Light grey track background */
+    background: white;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #f1f1f1;        /* Medium grey thumb */
+    background: #D3D3D3;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;        /* Darker grey thumb on hover */
+    background: #555;
 }
-
-.collapsible {
-  
-  background-color: white;
-  color: black;
-  cursor: pointer;
-  padding: 5px;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  border-radius:10px;
-}
-
-/* Add a background color on hover */
-.collapsible:hover {
-  font-weight: bold;
-  background-color: #ccc;
-}
-
-/* Style the collapsible content (hidden by default) */
-.content {
-  width: 100%; /* Optional: Ensures the content box stretches to fill its container */
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 5s ease-out;
-  background-color: white;
-  padding: 0 20px;
-}
-
-/* When the collapsible is hovered, show the content */
-.collapsible:hover + .content {
-  max-height: 400px; /* Adjust this value based on expected content size */
-  transition:2s ease-in-out ;
-}
-
-.content p{
-  padding-top:5px;
-  text-align: left;
-}
-
