@@ -42,17 +42,61 @@ function resetStack() {
 document.addEventListener('click', goToNextPage);
 
 
-// Add event listener for document click
-document.addEventListener('click', function(event) {
-    // Check if the left mouse button was clicked (button code 0)
-    if (event.button === 0) {
-        // Scroll to the top of the page smoothly
+document.addEventListener('click', function (event) {
+    // Scroll to top if not clicking on navigation elements
+    if (event.button === 0 && !event.target.closest('.page-navigation')) {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'  // Smooth scroll
+            behavior: 'smooth'
         });
     }
 });
+
+// Add right mouse button event for going to the previous page
+document.addEventListener('contextmenu', function (event) {
+    event.preventDefault(); // Prevent default right-click context menu
+    goToPreviousPage();
+});
+
+// Left-click event for navigating to the next page
+document.addEventListener('click', function (event) {
+    if (event.button === 0 && event.target.closest('.page-navigation')) {
+        goToNextPage();
+    }
+});
+
+function goToPreviousPage() {
+    if (currentPage === 1) {
+        // If on the first page, wrap around to the last page
+        currentPage = totalPages;
+    } else {
+        // Decrease the current page
+        currentPage--;
+    }
+
+    // Handle page transitions
+    const currentPageElement = pages[currentPage - 1];
+    const nextPageIndex = currentPage % totalPages;
+    const previousPageIndex = (currentPage - 2 + totalPages) % totalPages;
+
+    // Style the current page
+    currentPageElement.style.opacity = '1';
+    currentPageElement.style.transform = 'translateX(0)';
+    currentPageElement.style.zIndex = 3;
+
+    // Style the next page
+    pages[nextPageIndex].style.opacity = '0.5';
+    pages[nextPageIndex].style.transform = 'translateX(50%)';
+    pages[nextPageIndex].style.zIndex = 1;
+
+    // Style the previous page
+    pages[previousPageIndex].style.opacity = '0.7';
+    pages[previousPageIndex].style.transform = 'translateX(0)';
+    pages[previousPageIndex].style.zIndex = 2;
+}
+
+
+
 
 // Check if we're on page 3
 if (document.body.classList.contains('page-3')) {
@@ -149,3 +193,31 @@ document.addEventListener('DOMContentLoaded', function() {
     contactElements.forEach(addShakeEffect);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const collapsibles = document.querySelectorAll('.collapsible');
+
+    collapsibles.forEach(collapsible => {
+        const content = collapsible.nextElementSibling; // Get the next sibling content div
+        const gemIcon = content.querySelector('i'); // Find the <i> element inside the content
+
+        collapsible.addEventListener('mouseenter', () => {
+            // Open the collapsible content
+            content.style.maxHeight = content.scrollHeight + "px";
+
+            // Add a delay before the shake animation
+            setTimeout(() => {
+                gemIcon.classList.add('shake');
+
+                // Remove the shake class after the animation ends
+                gemIcon.addEventListener('animationend', () => {
+                    gemIcon.classList.remove('shake');
+                }, { once: true });
+            }, 2000); // Adjust the delay (2000ms = 2 seconds)
+        });
+
+        collapsible.addEventListener('mouseleave', () => {
+            // Close the collapsible content
+            content.style.maxHeight = null;
+        });
+    });
+});
